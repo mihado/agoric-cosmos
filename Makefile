@@ -2,7 +2,8 @@ CHAIN_AG=agoricdev-7
 CHAIN_COSMOS=cosmoshub-testnet
 IMAGE_AGORIC=agoric/agoric-sdk:agoricdev-7
 
-HERMES=docker run --rm -vhermes-home:/home/hermes:z -v$$PWD:/config hermes -c /config/hermes.config
+# ISSUE: hermes tag must match hermes.Dockerfile
+HERMES=docker run --rm -vhermes-home:/home/hermes:z -v$$PWD:/config hermes:0.9.0 -c /config/hermes.config
 
 KEYFILE=ibc-relay-mnemonic
 task/restore-keys: $(KEYFILE) task/hermes-image task/hermes-volume hermes.config
