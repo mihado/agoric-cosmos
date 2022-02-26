@@ -37,7 +37,7 @@ task/agoric-image:
 	mkdir -p task && touch $@
 
 hermes.Dockerfile:
-	wget https://raw.githubusercontent.com/informalsystems/ibc-rs/master/ci/hermes.Dockerfile
+	curl -O https://raw.githubusercontent.com/informalsystems/ibc-rs/master/ci/hermes.Dockerfile
 
 task/hermes-volume:
 	docker volume create hermes-home
