@@ -5,11 +5,11 @@ CHAIN_COSMOS=cosmoshub-testnet
 
 # ISSUE: use matching key names in hermes.config for consitency
 ADDR_AG_KEY=keys/agdevkey
-ADDR_AG="$$(cat $(ADDR_AG_KEY))"
+ADDR_AG := $(shell cat $(ADDR_AG_KEY))
 
 # ISSUE: use matching key names in hermes.config for consitency
 ADDR_COSMOS_KEY=keys/hubkey
-ADDR_COSMOS="$$(cat $(ADDR_COSMOS_KEY))"
+ADDR_COSMOS := $(shell cat ${ADDR_COSMOS_KEY})
 
 # ISSUE: hermes tag must match hermes.Dockerfile
 HERMES=docker run --rm -vhermes-home:/home/hermes:z -v$$PWD:/config hermes:0.9.0 -c /config/hermes.config
