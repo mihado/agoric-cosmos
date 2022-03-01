@@ -11,8 +11,7 @@ ADDR_AG := $(shell cat $(ADDR_AG_KEY))
 ADDR_COSMOS_KEY=keys/hubkey
 ADDR_COSMOS := $(shell cat ${ADDR_COSMOS_KEY})
 
-# ISSUE: hermes tag must match hermes.Dockerfile
-HERMES=docker run --rm -vhermes-home:/home/hermes:z -v$$PWD:/config hermes:0.9.0 -c /config/hermes.config
+HERMES=docker run --rm -vhermes-home:/home/hermes:z -v$$PWD:/config hermes -c /config/hermes.config
 
 KEYFILE=ibc-relay-mnemonic
 task/restore-keys: $(KEYFILE) task/hermes-image task/hermes-volume hermes.config
@@ -28,7 +27,7 @@ print-keys:
 	echo $(ADDR_COSMOS)
 
 start: task/create-channel
-	docker-compose up -d
+	docker-compose up -d hermes-latest
 
 task/create-channel: hermes.config task/hermes-image task/hermes-volume \
 		task/restore-keys task/tap-cosmos-faucet task/tap-agoric-faucet
