@@ -1,6 +1,6 @@
-IMAGE_AGORIC=agoric/agoric-sdk:agoricdev-7
+IMAGE_AGORIC=agoric/agoric-sdk:agoricdev-8
 
-CHAIN_AG=agoricdev-7
+CHAIN_AG=agoricdev-8
 CHAIN_COSMOS=cosmoshub-testnet
 
 # ISSUE: use matching key names in hermes.config for consitency
@@ -70,3 +70,6 @@ task/tap-agoric-faucet: hermes.config
 	docker run --rm $(IMAGE_AGORIC) --node $(RPC_AG) query bank balances $(ADDR_AG)
 	@echo otherwise, touch $@
 	exit 1
+
+task/query-agoric-balance:
+	docker run --rm $(IMAGE_AGORIC) --node $(RPC_AG) query bank balances $(ADDR_AG)
